@@ -1,0 +1,16 @@
+name = "StrucRev"
+uuid = "7b8f7aa4-1ebd-4ca4-82db-a8892f6fa88b"
+authors = ["Eben60"]
+version = "0.0.1"
+
+[deps]
+MacroTools = "1914dd2f-81c6-5fcd-8719-6d5c9610ff09"
+
+[compat]
+julia = "1.10"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
