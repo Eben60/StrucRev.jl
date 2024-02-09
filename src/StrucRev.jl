@@ -104,4 +104,10 @@ end
 
 export @strev
 
+macro revise_together(expr)
+    esc(expr)
+end
+
+export @revise_together
+
 end # module ModularWF
