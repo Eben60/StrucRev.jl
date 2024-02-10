@@ -63,6 +63,14 @@ end
     const b::Float64
 end
 
+@strev begin 
+    @kwdef struct F10{T}
+        a::T = 1
+        b::T = 2
+        c::T
+    end
+end
+
 @strev const x9 = 9 
 @strev const x10 = 2*5 
 @strev const x11 = 10 
@@ -83,6 +91,7 @@ end
 @test F3 === StrucRev_F3.F3
 @test F4 === StrucRev_F4.F4
 @test F5 === StrucRev_F5.F5
+@test F10 === StrucRev_F10.F10
 @test I08 === StrucRev_I08.I08
 @test I16 === StrucRev_I16.I16
 @test A1 === StrucRev_A1.A1
@@ -128,6 +137,17 @@ s8a = F8(4)
 s9 = F9(3, "3")
 @test s9.r == 3
 @test s9.s == "3"
+
+s10a = F10(1, 2, 3)
+
+@test s10a.a == 1
+@test s10a.b == 2
+@test s10a.c == 3
+
+s10b = F10(;a=1, b=2, c=3)
+s10c = F10(; c=3)
+
+@test s10a == s10b == s10c
 
 @test x9 == 9
 @test x10 == 10
