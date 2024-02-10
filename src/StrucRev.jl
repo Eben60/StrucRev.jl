@@ -1,6 +1,6 @@
 module StrucRev
 using MacroTools
-using MacroTools: prewalk
+using MacroTools: prewalk, namify 
 
 const packagename = string(@__MODULE__)
 
@@ -35,17 +35,14 @@ function make_usings(ex, fname, m)
     return Meta.parse(exstr)
 end
 
-getname(x::Symbol) = x
-getname(ex::Expr) = getname(ex.args[1])
-
 getstructnames!(x, _names) = nothing
 
 function getstructnames!(ex::Expr, _names)
     if ex.head == :struct
-        sname = getname(ex.args[2]) 
+        sname = namify(ex.args[2]) 
         push!(_names, sname)
     elseif ex.head in (:abstract, :primitive)
-        sname = getname(ex.args[1]) 
+        sname = namify(ex.args[1]) 
         push!(_names, sname)       
     else
         foreach(x -> getstructnames!(x, _names), ex.args)
